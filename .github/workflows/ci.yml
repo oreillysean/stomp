@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.3', '7.4', '8.0']
+        php: ['7.3', '7.4', '8.0', '8.1']
 
     name: PHP ${{ matrix.php }} tests
 
@@ -22,8 +22,8 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
 
-      - uses: "ramsey/composer-install@v1"
+      - uses: "ramsey/composer-install@v2"
         with:
           composer-options: "--prefer-source"
 
-      - run: vendor/bin/phpunit --exlude-group=functional
+      - run: vendor/bin/phpunit --exclude-group=functional
